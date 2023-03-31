@@ -5,14 +5,13 @@ Instructions for this challenge can be found [here](./Instructions.pdf).
 Game plan:
 
 1. Initialize Vue with TypeScript app using Vite
-2. Add face-api.js to project (free face-recognition app)
+2. Add [face-api.js](https://justadudewhohacks.github.io/face-api.js/docs/index.html) to project (free face-recognition app)
 3. Add Vuetify (UI component framework)
 4. Implement image uploading
 5. Apply face detection to uploaded image and receive data
 6. Containerize the application
 7. Add face user data (e.g., admin)
 8. Implement sessions via JTW
-
 
 ## Why face-api?
 

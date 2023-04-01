@@ -17,6 +17,10 @@ Game plan:
 
 It provides a simple and effective way of producing face recognition from a Node.js app.
 
+## Labeling PRs
+
+Implemented auto-labeler to label PRs
+
 <hr/>
 
 ## Vue 3 + TypeScript + Vite

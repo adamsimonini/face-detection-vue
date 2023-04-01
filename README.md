@@ -13,10 +13,9 @@ Game plan:
 7. Add face user data (e.g., admin)
 8. Implement sessions via JTW
 
+## Why Google Cloud Vision API
 
-## Why face-api?
-
-face-api.js loads the machine learning model directly onto the device. This is undesirable for many reasons: it's slow, it's demanding on resources, and I have to do more work as a developer. That said, the advantage is that the app isn't tied to a cloud service, where the free tier will eventually run out. If I want to add this to my portfolio, it will be a headache finding ways to support it for free after the free cloud services run out. Consequently, face-api is the way to go.
+It provides a simple and effective way of producing face recognition from a Node.js app.
 
 <hr/>
 

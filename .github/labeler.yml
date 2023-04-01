@@ -12,9 +12,9 @@
   - "*.md"
   - "docs/*"
 
-"Files: Tests":
+# "Files: Tests":
 
-"Files: Migrations":
+# "Files: Migrations":
 
 "Files: Dependencies":
   - "package.json"
@@ -23,9 +23,9 @@
   - .github/*
   - .github/**/*
 
-"Files: Models":
+# "Files: Models":
 
-"Files: Seeds":
+# "Files: Seeds":
 
 "Area: Frontend 🎨":
   - "src/**/*"

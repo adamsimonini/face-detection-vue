@@ -32,4 +32,4 @@
   - "src/*"
 
 "Area: Backend 💾":
-  all: ["!src/**/*", "!src/*"]
+  - all: ["!src/**/*", "!src/*"]

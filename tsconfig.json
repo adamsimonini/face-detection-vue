@@ -11,12 +11,18 @@
 		"esModuleInterop": true,
 		"lib": ["ESNext", "DOM"],
 		"skipLibCheck": true,
-		"noEmit": true
+		"noEmit": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"],
+			"@assets/*": ["assets/*"],
+			"@utilities/*": ["utilities/*"]
+		}
 	},
 	"ts-node": {
 		"esm": true,
 		"experimentalSpecifierResolution": "node"
 	},
-	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "utilities/**/*.ts"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }

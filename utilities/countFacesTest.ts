@@ -78,4 +78,4 @@ async function main(inputFile: string, outputFile: string) {
 	console.log("Finished!");
 }
 
-main("./assets/birthday.jpg", "birthday");
+main("../assets/birthday.jpg", "birthday");

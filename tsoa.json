@@ -1,0 +1,9 @@
+{
+	"noImplicitAdditionalProperties": "throw-on-extras",
+	"controllerPathGlobs": ["server/controllers/*.ts"],
+	"entryFile": "./server/index.ts",
+	"spec": {
+		"outputDirectory": "./server/swagger",
+		"specVersion": 3
+	}
+}

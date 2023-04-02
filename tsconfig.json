@@ -12,6 +12,8 @@
 		"lib": ["ESNext", "DOM"],
 		"skipLibCheck": true,
 		"noEmit": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["src/*"],

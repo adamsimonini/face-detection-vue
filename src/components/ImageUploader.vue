@@ -1,8 +1,12 @@
 <script lang="ts">
+import { detectFaces, getHighlightedFile } from "@utilities/imageDetection";
+
 export default {
 	name: "image-uploader",
 	data: () => ({
-		image: null,
+		image: undefined,
+		imageData: undefined,
+		loading: false,
 		rules: [
 			(value: any) => {
 				return !value || !value.length || value[0].size < 2000000 || "Avatar size should be less than 2 MB!";
@@ -10,34 +14,81 @@ export default {
 		]
 	}),
 	methods: {
-		async selectImage(e: any) {
-			const file = e;
-			if (!file) return;
-			const readData = (f: any) =>
-				new Promise(resolve => {
-					const reader = new FileReader();
-					reader.onloadend = () => resolve(reader.result);
-					reader.readAsDataURL(f);
-				});
-			const data = await readData(file);
-			this.image = data;
+		test(e: any) {
+			console.log(e.target.files[0]);
 		},
-		async clearImagePreview() {
-			this.image = "";
+		// importImage() {
+		// 	var reader = new FileReader();
+
+		// 	// Use the javascript reader object to load the contents
+		// 	// of the file in the v-model prop
+		// 	reader.readAsDataURL(this.image);
+		// 	reader.onload = () => {
+		// 		this.imageData = reader.result;
+		// 	};
+		// },
+
+		// async readFileAsDataURL(event: any) {
+		// 	let result_base64 = await new Promise(resolve => {
+		// 		let fileReader = new FileReader();
+		// 		fileReader.onload = e => resolve(fileReader.result);
+		// 		fileReader.readAsDataURL(file);
+		// 	});
+
+		// 	console.log(result_base64); // aGV5IHRoZXJl...
+
+		// 	return result_base64;
+		// }
+
+		importImage(e: any) {
+			this.loading = true;
+			const file = e.target.files[0];
+			// ensure there is actually a file that has been uploaded, and that it is of type image
+			if (!file || !file.type.match("image.*")) {
+				this.loading = false;
+				return;
+			}
+			// Use the javascript reader object to load the image contents
+			let reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = () => {
+				this.imageData = reader.result;
+				console.log(this.imageData);
+				this.loading = false;
+				getHighlightedFile(this.imageData);
+			};
 		}
+
+		// async selectImage(e: any) {
+		// 	const file = e;
+		// 	if (!file) return;
+		// 	const readData = (f: any) =>
+		// 		new Promise(resolve => {
+		// 			const reader = new FileReader();
+		// 			reader.onloadend = () => resolve(reader.result);
+		// 			reader.readAsDataURL(f);
+		// 		});
+		// 	const data = await readData(file);
+		// 	this.image = data;
+
+		// 	console.log(this.image);
+		// },
+		// async clearImagePreview() {
+		// 	this.image = "";
+		// }
 	}
 };
 </script>
 
 <template>
 	<v-col cols="12" sm="12">
-		<v-file-input hint="my hint" density="comfortable" :rules="rules" show-size accept="image/png, image/jpeg, image/bmp" placeholder="Pick an avatar" prepend-icon="mdi-camera" label="Upload photo here"></v-file-input>
+		<v-file-input v-model="image" @change="importImage" hint="my hint" :loading="loading" density="comfortable" :rules="rules" show-size accept="image/png, image/jpeg, image/bmp" prepend-icon="mdi-camera" label="Upload photo here"></v-file-input>
 		<div class="text-left">
 			<strong>Restrictions</strong>
 			<div class="ml-5">
 				<ul>
-					<li>must be under 2MB</li>
-					<li>must be one of these file types: .png, .jpeg, or .bmp</li>
+					<li>photo must be under 2MB</li>
+					<li>photo must be one of these file types: .png, .jpeg, or .bmp</li>
 				</ul>
 			</div>
 		</div>

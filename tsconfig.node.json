@@ -5,5 +5,5 @@
 		"moduleResolution": "Node",
 		"allowSyntheticDefaultImports": true
 	},
-	"include": ["vite.config.ts", "src/**/*.ts", "utilities/countFacesTest.ts", "utilities/**/*ts"]
+	"include": ["vite.config.ts", "src/**/*.ts", "utilities/imageDetection.ts", "utilities/**/*ts"]
 }

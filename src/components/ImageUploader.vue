@@ -17,29 +17,6 @@ export default {
 		test(e: any) {
 			console.log(e.target.files[0]);
 		},
-		// importImage() {
-		// 	var reader = new FileReader();
-
-		// 	// Use the javascript reader object to load the contents
-		// 	// of the file in the v-model prop
-		// 	reader.readAsDataURL(this.image);
-		// 	reader.onload = () => {
-		// 		this.imageData = reader.result;
-		// 	};
-		// },
-
-		// async readFileAsDataURL(event: any) {
-		// 	let result_base64 = await new Promise(resolve => {
-		// 		let fileReader = new FileReader();
-		// 		fileReader.onload = e => resolve(fileReader.result);
-		// 		fileReader.readAsDataURL(file);
-		// 	});
-
-		// 	console.log(result_base64); // aGV5IHRoZXJl...
-
-		// 	return result_base64;
-		// }
-
 		importImage(e: any) {
 			this.loading = true;
 			const file = e.target.files[0];
@@ -55,7 +32,8 @@ export default {
 				this.imageData = reader.result;
 				console.log(this.imageData);
 				this.loading = false;
-				getHighlightedFile(this.imageData);
+				// TODO: build an API route for this process to be done on the backend
+				// getHighlightedFile(this.imageData);
 			};
 		}
 

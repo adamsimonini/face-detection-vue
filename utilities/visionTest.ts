@@ -19,3 +19,10 @@ async function quickstart() {
 quickstart();
 
 export {};
+
+	"noImplicitAdditionalProperties": "throw-on-extras",
+	"controllerPathGlobs": ["server/controllers/*.ts"],
+	"spec": {
+		"outputDirectory": "./sever/swagger",
+		"specVersion": 3
+	},

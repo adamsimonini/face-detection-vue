@@ -15,10 +15,6 @@ export default defineConfig({
 			{
 				find: "@assets",
 				replacement: path.resolve(__dirname, "./assets")
-			},
-			{
-				find: "@utilities",
-				replacement: path.resolve(__dirname, "./utilities")
 			}
 		]
 	}

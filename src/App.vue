@@ -12,8 +12,8 @@ export default {
 <template>
 	<v-container class="">
 		<TopBar />
-		<v-row no-gutters>
-			<ImageUploader />
+		<ImageUploader />
+		<v-row>
 			<v-col v-for="n in 3" :key="n" cols="12" sm="4">
 				<v-sheet class="ma-2 pa-2"> One of three columns </v-sheet>
 			</v-col>

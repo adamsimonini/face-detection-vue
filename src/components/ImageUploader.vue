@@ -1,15 +1,19 @@
 <script lang="ts">
-import { detectFaces, getHighlightedFile } from "@utilities/imageDetection";
-
 export default {
 	name: "image-uploader",
 	data: () => ({
 		image: undefined,
-		imageData: undefined,
+		imageName: "test",
+		imageBase64: undefined,
 		loading: false,
-		rules: [
+		imageRules: [
 			(value: any) => {
-				return !value || !value.length || value[0].size < 2000000 || "Avatar size should be less than 2 MB!";
+				return !value || !value.length || value[0].size < 2000000 || "Image size should be less than 2 MB!";
+			}
+		],
+		nameRules: [
+			(value: any) => {
+				return !value || !value.length || value[0].length < 81 || "80 characters is the max length for this field";
 			}
 		]
 	}),
@@ -35,42 +39,49 @@ export default {
 				// TODO: build an API route for this process to be done on the backend
 				// getHighlightedFile(this.imageData);
 			};
+		},
+		sendImageDataToExpress() {
+			// ensure that both an image and image name have been provided
+			// if (!this.image || !this.imageName) return false;
+			this.axios
+				.get("http://localhost:5050/helloworld", {
+					params: {
+						name: this.imageName
+					}
+				})
+				.then(response => {
+					console.log(response.data);
+				});
 		}
-
-		// async selectImage(e: any) {
-		// 	const file = e;
-		// 	if (!file) return;
-		// 	const readData = (f: any) =>
-		// 		new Promise(resolve => {
-		// 			const reader = new FileReader();
-		// 			reader.onloadend = () => resolve(reader.result);
-		// 			reader.readAsDataURL(f);
-		// 		});
-		// 	const data = await readData(file);
-		// 	this.image = data;
-
-		// 	console.log(this.image);
-		// },
-		// async clearImagePreview() {
-		// 	this.image = "";
-		// }
 	}
 };
 </script>
 
 <template>
-	<v-col cols="12" sm="12">
-		<v-file-input v-model="image" @change="importImage" hint="my hint" :loading="loading" density="comfortable" :rules="rules" show-size accept="image/png, image/jpeg, image/bmp" prepend-icon="mdi-camera" label="Upload photo here"></v-file-input>
-		<div class="text-left">
-			<strong>Restrictions</strong>
-			<div class="ml-5">
-				<ul>
-					<li>photo must be under 2MB</li>
-					<li>photo must be one of these file types: .png, .jpeg, or .bmp</li>
-				</ul>
+	<v-sheet max-width="" class="d-flex align-start flex-column">
+		<v-row no-gutters class="d-flex align-center flex-row w-100">
+			<v-col cols="6" sm="6" class="w-100">
+				<v-file-input class="image-input" v-model="image" @change="importImage" hint="my hint" :loading="loading" density="comfortable" :rules="imageRules" show-size accept="image/png, image/jpeg, image/bmp" prepend-icon="mdi-camera" label="Upload photo here"></v-file-input>
+			</v-col>
+			<v-col cols="3" sm="3">
+				<v-text-field v-model="imageName" class="ml-5 image-input" label="Photo Name" :rules="nameRules" hide-details="auto"></v-text-field>
+			</v-col>
+			<v-col cols="3" sm="3">
+				<v-btn @click="sendImageDataToExpress" class="ml-5 image-input" block rounded="lsm" size="large" color="indigo-darken-3">Detect Faces</v-btn>
+			</v-col>
+		</v-row>
+		<v-row no-gutters justify="start" class="ml-10">
+			<div class="text-left">
+				<strong>Restrictions</strong>
+				<div class="ml-5">
+					<ul>
+						<li>photo must be under 2MB</li>
+						<li>photo must be one of these file types: .png, .jpeg, or .bmp</li>
+					</ul>
+				</div>
 			</div>
-		</div>
-	</v-col>
+		</v-row>
+	</v-sheet>
 </template>
 
 <style scoped>

@@ -1,9 +1,12 @@
 import { createApp } from "vue";
-import "./style.css";
+import { createPinia } from "pinia";
 import App from "./App.vue";
+import axios from "axios";
+import VueAxios from "vue-axios";
 import "@mdi/font/css/materialdesignicons.css";
+import "./style.css";
 
-// Vuetify
+// Vuetify styles and components
 import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
@@ -14,4 +17,12 @@ const vuetify = createVuetify({
 	directives
 });
 
-createApp(App).use(vuetify).mount("#app");
+// Pinia global state store
+const pinia = createPinia();
+
+const app = createApp(App);
+app.use(vuetify); // popular material UI compnent library for vue
+app.use(pinia); // propular vue global store
+app.use(VueAxios, axios); // popular library for consuming apis
+app.provide("axios", app.config.globalProperties.axios);
+app.mount("#app");

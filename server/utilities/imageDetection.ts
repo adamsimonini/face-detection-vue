@@ -76,5 +76,5 @@ export async function getHighlightedFile(inputFile: string, outputFile: string) 
 	console.log("Finished!");
 }
 
-// main("../assets/birthday.jpg", "birthday");
+getHighlightedFile("../../assets/birthday.jpg", "birthday");
 export default {};

@@ -1,3 +1,10 @@
+ADC=~/.config/gcloud/application_default_credentials.json \
+docker run \
+-e GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/FILE_NAME.json \
+-v ${ADC}:/tmp/keys/FILE_NAME.json:ro \
+
+
+
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3.11.0-buster
 
@@ -87,3 +94,5 @@ ENTRYPOINT ["/phacend/entrypoint.sh"]
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+

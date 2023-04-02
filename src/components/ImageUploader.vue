@@ -1,6 +1,4 @@
 <script lang="ts">
-import { detectFaces, getHighlightedFile } from "@utilities/imageDetection";
-
 export default {
 	name: "image-uploader",
 	data: () => ({
@@ -45,9 +43,15 @@ export default {
 		sendImageDataToExpress() {
 			// ensure that both an image and image name have been provided
 			// if (!this.image || !this.imageName) return false;
-			this.axios.get("http://localhost:5050/helloworld").then(response => {
-				console.log(response.data);
-			});
+			this.axios
+				.get("http://localhost:5050/helloworld", {
+					params: {
+						name: this.imageName
+					}
+				})
+				.then(response => {
+					console.log(response.data);
+				});
 		}
 	}
 };

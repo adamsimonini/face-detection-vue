@@ -21,8 +21,8 @@ const vuetify = createVuetify({
 const pinia = createPinia();
 
 const app = createApp(App);
-app.use(vuetify);
-app.use(pinia);
-app.use(VueAxios, axios);
+app.use(vuetify); // popular material UI compnent library for vue
+app.use(pinia); // propular vue global store
+app.use(VueAxios, axios); // popular library for consuming apis
 app.provide("axios", app.config.globalProperties.axios);
 app.mount("#app");

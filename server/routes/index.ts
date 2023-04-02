@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
 
 router.get("/helloworld", async (req, res) => {
 	const controller = new HelloWorldController();
-	const response = await controller.hello();
+	const response = await controller.hello(req);
 	return res.send(response.message);
 });
 

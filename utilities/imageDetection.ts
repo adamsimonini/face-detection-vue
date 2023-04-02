@@ -7,9 +7,7 @@ import * as PImage from "pureimage";
 // Creates a client
 const client = new vision.ImageAnnotatorClient();
 
-export {};
-
-async function detectFaces(inputFilePath: any) {
+export async function detectFaces(inputFilePath: any) {
 	if (fs.existsSync(inputFilePath)) {
 		// Make a call to the Vision API to detect the faces
 		const request = { image: { source: { filename: inputFilePath } } };
@@ -26,7 +24,7 @@ async function detectFaces(inputFilePath: any) {
 	}
 }
 
-async function highlightFaces(inputFile: string, faces: any, outputFile: string, PImage: any) {
+async function getFaceHighlighting(inputFile: string, faces: any, outputFile: string, PImage: any) {
 	// Open the original image
 	const stream = fs.createReadStream(inputFile);
 	let promise;
@@ -70,12 +68,13 @@ async function highlightFaces(inputFile: string, faces: any, outputFile: string,
 
 // var imageAsBase64 = fs.readFileSync("./assets/birthday.jpg", "base64");
 
-async function main(inputFile: string, outputFile: string) {
+export async function getHighlightedFile(inputFile: string, outputFile: string) {
 	outputFile = `${outputFile}-highlighted.png` || "out.png";
 	const faces = await detectFaces(inputFile);
 	console.log("Highlighting...");
-	await highlightFaces(inputFile, faces, outputFile, PImage);
+	await getFaceHighlighting(inputFile, faces, outputFile, PImage);
 	console.log("Finished!");
 }
 
-main("../assets/birthday.jpg", "birthday");
+// main("../assets/birthday.jpg", "birthday");
+export default {};

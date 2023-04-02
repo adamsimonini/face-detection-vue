@@ -28,8 +28,9 @@
 # "Files: Seeds":
 
 "Area: Frontend 🎨":
-  - "src/**/*"
   - "src/*"
+  - "src/**/*"
 
 "Area: Backend 💾":
-  - all: ["!src/**/*", "!src/*"]
+  - "server/*"
+  - "server/**/*"
